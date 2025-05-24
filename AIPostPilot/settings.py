@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'posts',
-    'django_celery_beat'
+    'django_celery_beat',
     'recommendation',
 
 ]
