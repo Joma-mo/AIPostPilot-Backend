@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,12 @@ SECRET_KEY = 'django-insecure-o=p-p#5x2qdcaqu3m5@zp5zex16u#=b-!ve!r+&v-wf9a3))d4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '10.0.2.2',  # Android emulator's localhost alias
+    '*'          # Allow all hosts for development - remove in production
+]
 
 
 # Application definition
@@ -42,7 +48,7 @@ INSTALLED_APPS = [
     'posts',
     'django_celery_beat',
     'recommendation',
-
+    'instagram_integration',
 ]
 
 REST_FRAMEWORK = {
@@ -138,4 +144,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+
+# Instagram Config
+INSTAGRAM_APP_ID = config('INSTAGRAM_APP_ID')
+INSTAGRAM_APP_SECRET = config('INSTAGRAM_APP_SECRET')
+INSTAGRAM_REDIRECT_URI = config('INSTAGRAM_REDIRECT_URI')
+
 
