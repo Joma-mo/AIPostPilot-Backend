@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +41,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'posts',
-    'django_celery_beat'
+    'django_celery_beat',
+    'instagram_integration',
+    'recommendations'
 ]
 
 REST_FRAMEWORK = {
@@ -136,4 +139,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+
+# Instagram Config
+INSTAGRAM_APP_ID = config('INSTAGRAM_APP_ID')
+INSTAGRAM_APP_SECRET = config('INSTAGRAM_APP_SECRET')
+INSTAGRAM_REDIRECT_URI = config('INSTAGRAM_REDIRECT_URI')
+
 
