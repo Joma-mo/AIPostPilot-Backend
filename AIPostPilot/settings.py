@@ -26,7 +26,12 @@ SECRET_KEY = 'django-insecure-o=p-p#5x2qdcaqu3m5@zp5zex16u#=b-!ve!r+&v-wf9a3))d4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '10.0.2.2',  # Android emulator's localhost alias
+    '*'          # Allow all hosts for development - remove in production
+]
 
 
 # Application definition
