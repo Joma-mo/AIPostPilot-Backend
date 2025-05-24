@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'users',
     'posts',
     'django_celery_beat'
+    'recommendation',
+
 ]
 
 REST_FRAMEWORK = {
