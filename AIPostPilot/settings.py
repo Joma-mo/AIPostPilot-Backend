@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'users',
     'posts',
     'django_celery_beat',
-    'instagram_integration'
+    'instagram_integration',
+    'recommendations'
 ]
 
 REST_FRAMEWORK = {
