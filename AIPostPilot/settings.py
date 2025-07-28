@@ -49,11 +49,14 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'recommendation',
     'instagram_integration',
+    'facebook_integration',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+
     ),
 }
 
@@ -151,3 +154,20 @@ INSTAGRAM_APP_SECRET = config('INSTAGRAM_APP_SECRET')
 INSTAGRAM_REDIRECT_URI = config('INSTAGRAM_REDIRECT_URI')
 
 
+
+#facebook integration
+FACEBOOK_APP_ID = config('FACEBOOK_APP_ID')
+FACEBOOK_APP_SECRET = config('FACEBOOK_APP_SECRET')
+
+
+FACEBOOK_REDIRECT_URI = config('FACEBOOK_REDIRECT_URI')
+# FACEBOOK_PAGE_ID = config('FACEBOOK_PAGE_ID')
+
+
+
+CELERY_BEAT_SCHEDULE = {
+    'process-scheduled-posts-every-minute': {
+        'task': 'posts.tasks.process_scheduled_posts',
+        'schedule': 60.0,  # In seconds (so, every minute)
+    },
+}

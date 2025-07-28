@@ -1,16 +1,13 @@
 import os
 from celery import Celery
-from celery.schedules import crontab
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aipostpilot.settings')
+# Set the default Django settings module for the 'celery' program.
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'AIPostPilot.settings')
 
-app = Celery('aipostpilot')
+app = Celery('AIPostPilot')
+
+
 app.config_from_object('django.conf:settings', namespace='CELERY')
-app.autodiscover_tasks()
 
-app.conf.beat_schedule = {
-    'check-due-posts-every-minute': {
-        'task': 'posts.tasks.publish_due_posts',
-        'schedule': crontab(minute='*'),
-    },
-}
+# Load task modules from all registered Django app configs.
+app.autodiscover_tasks()

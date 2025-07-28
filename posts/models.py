@@ -17,6 +17,8 @@ class ScheduledPost(models.Model):
     scheduled_time = models.DateTimeField()
     status = models.CharField(max_length=32, choices=STATUS_CHOICES, default='scheduled')
     created_at = models.DateTimeField(auto_now_add=True)
+    facebook_page = models.ForeignKey('users.FacebookPage', on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.user.username} - {self.scheduled_time} - {self.status}"

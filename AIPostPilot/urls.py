@@ -27,4 +27,9 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/', include('recommendation.urls')),
+
+    path('api/facebook/', include('facebook_integration.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+
+
 ]
